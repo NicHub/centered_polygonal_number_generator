@@ -168,8 +168,6 @@
             For instance, the 10th dot can be accessed as follows:
             #c10 { fill: red; }
 
-            If you want to display the IDs themselves, comment the `display none` statement below.
-
             Style can also be applied to the dots within a specific layer by targeting their class.
             For instance, the dots on the 2nd layer can be accessed as follows:
             .l2 { fill: hsl(110, 45%, 75%); stroke: hsl(110, 45%, 65%); }
@@ -212,28 +210,32 @@
         <script type="application/ecmascript">
     <![CDATA[
 
+
     "use strict";
 
 
     /**
-    *   Initialization of CPN, the object containing
-    *   the data for the centered polygonal number.
-    *   When calling the function `centered_polygonal_number`,
-    *   the first 4 properties must be provided.
-    *   The other properties are then computed.
-    */
+     * Initialization of CPN, the object containing
+     * the data for the centered polygonal number.
+     * When calling the function `centered_polygonal_number`,
+     * the first 4 properties must be provided.
+     * The other properties are then computed.
+     */
     let CPN = {
+        // Values provided by the user.
         side_count  : 7,
         layer_count : 5,
         layer_gap   : 3,
         dot_radius  : 1,
+
+        // Values computed by the script.
         display_ids : false,
         dot_count   : null,
         coords      : [{
             is_last_layer : null,
                     layer : null,
-                    side : null,
-                    dot : null,
+                     side : null,
+                      dot : null,
                         x : null,
                         y : null,
         }],
@@ -241,10 +243,10 @@
 
 
     /**
-    * Optional: Override CPN initial values with GET parameters if present.
-    * Example URL:
-    * centered_polygonal_numbers.svg?side_count=5&layer_count=3&layer_gap=2&dot_radius=0.5
-    */
+     * Optional: Override CPN initial values with GET parameters if present.
+     * Example URL:
+     * centered_polygonal_numbers.svg?side_count=5&layer_count=3&layer_gap=2&dot_radius=0.5
+     */
     const urlParams = new URLSearchParams(window.location.search);
     for (const _p of urlParams) {
         if (CPN.hasOwnProperty(_p[0])) {
@@ -254,8 +256,8 @@
 
 
     /**
-    * Draw with initial values.
-    */
+     * Draw with initial values.
+     */
     centered_polygonal_number(CPN);
 
 
@@ -295,8 +297,7 @@
         // Calculate the coordinates of the dots and some metadata.
         cpn.coords = [];
         for (let _i = 0; _i < cpn.layer_count; _i++) {
-            // Iterate by layer:
-            // - All layers: Iterate from 0 to cpn.layer_count - 1.
+            // Iterate by layer.
             const is_last_layer = _i == cpn.layer_count - 1;
             const jmax = _i > 0 ? cpn.side_count : 1;
             const kmax = _i > 0 ? _i - 1 : 0;
@@ -338,15 +339,15 @@
             const side_class = `s${cpn.coords[_i].side}`;
             svg_string += `<circle id = "c${_i}"
                                 class = "${layer_class} ${side_class}"
-                                   cx =  "${cpn.coords[_i].x}"
-                                   cy =  "${cpn.coords[_i].y}"
-                                    r =  "${cpn.dot_radius}" />\n`
+                                   cx = "${cpn.coords[_i].x}"
+                                   cy = "${cpn.coords[_i].y}"
+                                    r = "${cpn.dot_radius}" />\n`
             if (! CPN.display_ids) { continue };
             svg_string +=   `<text id = "t${_i}"
-                                class =  "${layer_class} ${side_class} dottext"
-                                    x =  "${cpn.coords[_i].x}"
-                                    y =  "${cpn.coords[_i].y}"
-                                            >${_i + 1}</text>\n`;
+                                class = "${layer_class} ${side_class} dottext"
+                                    x = "${cpn.coords[_i].x}"
+                                    y = "${cpn.coords[_i].y}"
+                                        >${_i + 1}</text>\n`;
         }
 
         // Add the numerical representation of the Centered Polygonal Number.
@@ -388,6 +389,7 @@
             update_CPN_and_label_single(input);
         });
     }
+
 
     function update_CPN_and_label_single(input) {
         // Get the value of the input.
