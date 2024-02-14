@@ -50,14 +50,22 @@
         input {
             width: 300px;
         }
-        .header, .controls {
+        .header {
             background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 0 0 20px 20px;
+            margin: 0 auto;
+            margin: 0 auto;
+            max-width:700px;
+            min-width:200px;
+            padding: 20px;
+            position: sticky;
+            text-align: center;
+            top: 0;
         }
         .footer {
             align-items: center;
             background-color: rgba(200, 200, 200, 0);
             bottom: 0;
-            display: absolute;
             margin: 0;
             position: fixed;
             width: 100%;
@@ -95,18 +103,6 @@
             padding: 0;
             position: relative;
         }
-        .header {
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 0 0 20px 20px;
-            margin: 0 auto;
-            margin: 0 auto;
-            max-width:700px;
-            min-width:200px;
-            padding: 20px;
-            position: sticky;
-            text-align: center;
-            top: 0;
-        }
         kbd {
             border-radius: 10%;
             border: 1px solid #AAA;
@@ -130,7 +126,7 @@
     </div>
 
     <svg
-        id = "centered_polygonal_number_svg"
+        id="centered_polygonal_number_svg"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="-40 -40 80 80">
@@ -351,6 +347,7 @@
         }
 
         // Add the numerical representation of the Centered Polygonal Number.
+        svg_string += `<rect x="-8px" y="-19.4px" width="16px" height="6px" fill="rgba(255, 255, 255, 0.5)" stroke="none" stroke-width="0" />`
         svg_string += `<text id="dot_count" x="0" y="-16">${cpn.dot_count}</text>`;
 
         // Update display.
@@ -370,7 +367,7 @@
         <div class="control"><label for="side_count" ></label><input class="npn" id="side_count"  type="range" min="3" max="20" step="1"   value="6"></div>
         <div class="control"><label for="layer_count"></label><input class="npn" id="layer_count" type="range" min="1" max="32" step="1"   value="4"></div>
         <div class="control"><label for="layer_gap"  ></label><input class="npn" id="layer_gap"   type="range" min="1" max="10" step="1"   value="3"></div>
-        <div class="control"><label for="dot_radius" ></label><input class="npn" id="dot_radius"  type="range" min="0" max= "3" step="0.1" value="1"></div>
+        <div class="control"><label for="dot_radius" ></label><input class="npn" id="dot_radius"  type="range" min="0"  max="3" step="0.1" value="1"></div>
         <p>Hint: Press the <kbd>Tab</kbd> key to select the controls<br>and set the values with these keys<br><kbd>←</kbd> <kbd>space</kbd> <kbd>→</kbd></p>
     </div>
 </div>
