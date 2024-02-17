@@ -174,7 +174,20 @@
             .s1,.s2,.s3,.s4,.s5,.s6{ fill: hsl(0, 0%, 95%); stroke: hsl(0, 0%, 85%); }
             */
             svg { background-color: rgba(255, 255, 255, 0); }
-            text { text-anchor: middle; font-size: 4px; font-family: monospace; fill: hsl(0, 0%, 30%); z-index: 1000; dominant-baseline: middle; text-shadow: #FFF 0 0 20px; }
+            text {
+                text-anchor: middle;
+                font-size: 4px;
+                font-family: monospace;
+                fill: hsl(0, 0%, 30%);
+                z-index: 1000;
+                /*
+                To remove “Unknown property” warning in VSCode,
+                add `dominant-baseline` to css.lint.validProperties
+                */
+                dominant-baseline: middle;
+                text-shadow: #fff 0 0 20px;
+            }
+
             text.dottext {
                 fill: hsl(0, 0%, 0%);
                 font-size: 1px;
